@@ -175,17 +175,6 @@ export default function ElVisionLanding() {
             <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
               Bukan karena kurang usaha. Tapi karena kamu menggunakan <span className="text-cyan-400 font-semibold">ALAT YANG SALAH</span>.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <button className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 rounded-lg font-bold text-slate-950 transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] hover:scale-105">
-                <span className="relative z-10">Mulai Sekarang</span>
-                <div className="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
-              
-              <button className="px-8 py-4 border-2 border-slate-700 hover:border-cyan-500/50 rounded-lg font-semibold hover:bg-cyan-500/5 transition-all duration-300">
-                Pelajari Lebih Lanjut
-              </button>
-            </div>
           </div>
         </div>
       </section>
