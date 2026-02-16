@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CheckCircle, Quote, Globe } from 'lucide-react';
+import { CheckCircle, Quote, Globe, Target } from 'lucide-react';
 
 type Language = 'id' | 'en';
 
@@ -70,6 +70,9 @@ interface Translation {
   kunciRules: string[];
   kunciBox1: string;
   kunciBox2: string;
+  kunciFocusTitle: string;
+  kunciFocusDesc: string;
+  kunciFiftyPercent: string;
   methodFinal: string;
   statsTitle: string;
   statsSub: string;
@@ -196,6 +199,9 @@ export default function ElVisionLanding() {
       ],
       kunciBox1: "Biarkan NIAT yang bekerja—bukan pikiran.",
       kunciBox2: "Niat itu bypass. Dia langsung masuk ke Alam Bawah Sadar tanpa harus dipikirkan.",
+      kunciFocusTitle: "Metode Fokus 1 Titik",
+      kunciFocusDesc: "Metode utama keberhasilan adalah Fokus pada satu objek. Konsentrasi dengan damai untuk mengunci alam sadar tanpa berontak. Saat alam sadar tunduk untuk fokus pada 1 titik, ia tidak akan mengganggu niat Anda karena terlalu menikmati fokus tersebut.",
+      kunciFiftyPercent: "Tahukah Anda? Fokus 1 titik adalah 50% dari seluruh pekerjaan kesuksesan ini.",
       methodFinal: "NIAT ITU DIRASAKAN. BUKAN DILOGIKAKAN.",
       statsTitle: "Dari Puluhan Ribu Orang yang Kami Saksikan",
       statsSub: "90% orang gagal karena tidak seimbang",
@@ -321,6 +327,9 @@ export default function ElVisionLanding() {
       ],
       kunciBox1: "Let the INTENTION do the work—not the thoughts.",
       kunciBox2: "Intention is a bypass. It enters the Subconscious Mind directly without having to be thought about.",
+      kunciFocusTitle: "1-Point Focus Method",
+      kunciFocusDesc: "The primary method for success is focusing on a single object. Peacefully concentrate to lock the conscious mind without rebellion. When the conscious mind submits to focus on one point, it will not interfere with your intention because it is fully engaged in enjoying that focus.",
+      kunciFiftyPercent: "Did you know? This 1-point focus represents 50% of the entire success of this work.",
       methodFinal: "INTENTION IS FELT. NOT LOGICIZED.",
       statsTitle: "From Tens of Thousands of People We've Witnessed",
       statsSub: "90% of people fail because they are unbalanced",
@@ -504,10 +513,7 @@ export default function ElVisionLanding() {
           {/* Atom Visualization */}
           <div className={`relative mb-12 transition-all duration-1500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
             <div className="relative w-32 h-32 mx-auto">
-              {/* Nucleus */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gradient-to-br from-cyan-400 to-amber-400 rounded-full shadow-[0_0_30px_rgba(6,182,212,0.6)]" />
-              
-              {/* Orbits */}
               {[0, 60, 120].map((rotation, i) => (
                 <div
                   key={i}
@@ -555,57 +561,55 @@ export default function ElVisionLanding() {
 
       {/* The Pain Section */}
       <section className="relative py-32 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-red-500/20 border border-red-500/50 flex items-center justify-center text-red-400 font-bold">
+        <div className="max-w-5xl mx-auto">
+          <div className="space-y-12">
+            <div className="flex flex-col items-center text-center space-y-6">
+              <div className="w-16 h-16 rounded-full bg-red-500/20 border border-red-500/50 flex items-center justify-center text-red-400 text-xl font-bold">
                 {currentT.painNum}
               </div>
-              <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-bold">
-                  <span className="text-red-400">{currentT.painLabel}</span>
-                  <br />
-                  <span className="text-slate-200">{currentT.painTitle}</span>
-                </h2>
-                
-                <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
-                  <p className="text-xl font-semibold text-slate-100">
-                    {currentT.painLead1}<span className="text-cyan-400">{currentT.painLead2}</span>{currentT.painLead3}
-                  </p>
-                  
-                  <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 space-y-4">
-                    <p className="font-bold text-xl text-amber-400">{currentT.painFactTitle}</p>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="text-center p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-                        <div className="text-4xl font-bold text-red-400">40 bit/s</div>
-                        <div className="text-sm text-slate-400 mt-1">{currentT.painFact1Label}</div>
-                      </div>
-                      <div className="text-center p-4 bg-cyan-500/10 border border-cyan-500/30 rounded-lg">
-                        <div className="text-4xl font-bold text-cyan-400">11M bit/s</div>
-                        <div className="text-sm text-slate-400 mt-1">{currentT.painFact2Label}</div>
-                      </div>
-                    </div>
+              <h2 className="text-5xl md:text-7xl font-bold">
+                <span className="text-red-400">{currentT.painLabel}</span>
+                <br />
+                <span className="text-slate-200">{currentT.painTitle}</span>
+              </h2>
+            </div>
+            
+            <div className="space-y-12 text-lg text-slate-300 leading-relaxed max-w-4xl mx-auto">
+              <p className="text-2xl font-semibold text-slate-100 text-center">
+                {currentT.painLead1}<span className="text-cyan-400">{currentT.painLead2}</span>{currentT.painLead3}
+              </p>
+              
+              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 space-y-4">
+                <p className="font-bold text-xl text-amber-400 text-center">{currentT.painFactTitle}</p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="text-center p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                    <div className="text-4xl font-bold text-red-400">40 bit/s</div>
+                    <div className="text-sm text-slate-400 mt-1">{currentT.painFact1Label}</div>
                   </div>
-
-                  <p>
-                    {currentT.painAnalogy1}<span className="text-red-400 font-bold">{currentT.painAnalogy2}</span>
-                  </p>
-
-                  <div className="space-y-3">
-                    <p className="font-semibold text-slate-100">{currentT.painResultTitle}</p>
-                    {currentT.painResults.map((item, i) => (
-                      <div key={i} className="flex items-center gap-3 pl-4">
-                        <div className="w-2 h-2 bg-red-400 rounded-full" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                  <div className="text-center p-4 bg-cyan-500/10 border border-cyan-500/30 rounded-lg">
+                    <div className="text-4xl font-bold text-cyan-400">11M bit/s</div>
+                    <div className="text-sm text-slate-400 mt-1">{currentT.painFact2Label}</div>
                   </div>
-
-                  <p className="text-xl font-bold text-slate-100 pt-4">
-                    {currentT.painFinal1}<span className="text-red-400">{currentT.painFinal2}</span>{currentT.painFinal3}
-                  </p>
                 </div>
               </div>
+
+              <p className="text-center">
+                {currentT.painAnalogy1}<span className="text-red-400 font-bold">{currentT.painAnalogy2}</span>
+              </p>
+
+              <div className="space-y-3">
+                <p className="font-semibold text-slate-100">{currentT.painResultTitle}</p>
+                {currentT.painResults.map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 pl-4">
+                    <div className="w-2 h-2 bg-red-400 rounded-full" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-2xl font-bold text-slate-100 pt-4 text-center">
+                {currentT.painFinal1}<span className="text-red-400">{currentT.painFinal2}</span>{currentT.painFinal3}
+              </p>
             </div>
           </div>
         </div>
@@ -613,62 +617,58 @@ export default function ElVisionLanding() {
 
       {/* The Gain Section */}
       <section className="relative py-32 px-6 md:px-12 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-bold">
+        <div className="max-w-5xl mx-auto">
+          <div className="space-y-12">
+            <div className="flex flex-col items-center text-center space-y-6">
+              <div className="w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center text-cyan-400 text-xl font-bold">
                 {currentT.gainNum}
               </div>
-              <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-bold">
-                  <span className="text-cyan-400">{currentT.gainLabel}</span>
-                  <br />
-                  <span className="text-slate-200">{currentT.gainTitle}</span>
-                </h2>
-                
-                <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
-                  <p className="text-xl font-semibold text-slate-100">
-                    {currentT.gainLead1}<span className="text-cyan-400">{currentT.gainLead2}</span>{currentT.gainLead3}
-                  </p>
-                  
-                  <p>
-                    {currentT.gainLead4}
-                  </p>
+              <h2 className="text-5xl md:text-7xl font-bold">
+                <span className="text-cyan-400">{currentT.gainLabel}</span>
+                <br />
+                <span className="text-slate-200">{currentT.gainTitle}</span>
+              </h2>
+            </div>
+            
+            <div className="space-y-12 text-lg text-slate-300 leading-relaxed max-w-4xl mx-auto">
+              <p className="text-2xl font-semibold text-slate-100 text-center">
+                {currentT.gainLead1}<span className="text-cyan-400">{currentT.gainLead2}</span>{currentT.gainLead3}
+              </p>
+              
+              <p className="text-center">{currentT.gainLead4}</p>
 
-                  <div className="bg-gradient-to-br from-cyan-500/10 to-amber-500/10 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-8 space-y-4 shadow-[0_0_50px_rgba(6,182,212,0.1)]">
-                    <p className="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400">
-                      {currentT.gainBoxTitle}
-                    </p>
-                    <p className="text-slate-200">
-                      {currentT.gainBoxDesc1}<span className="font-bold">{currentT.gainBoxDesc2}</span>{currentT.gainBoxDesc3}
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <p className="font-semibold text-slate-100">{currentT.gainNoTitle}</p>
-                    {currentT.gainNoItems.map((item, i) => (
-                      <div key={i} className="flex items-center gap-3 pl-4">
-                        <div className="w-2 h-2 bg-slate-600 rounded-full" />
-                        <span className="line-through text-slate-500">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="space-y-3 pt-4">
-                    <p className="font-semibold text-slate-100">{currentT.gainYesTitle}</p>
-                    {currentT.gainYesItems.map((item, i) => (
-                      <div key={i} className="flex items-center gap-3 pl-4">
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-                        <span className="text-cyan-300">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <p className="text-2xl font-bold text-center py-8 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-amber-400 to-cyan-400">
-                    {currentT.gainFinal}
-                  </p>
-                </div>
+              <div className="bg-gradient-to-br from-cyan-500/10 to-amber-500/10 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-8 space-y-4 shadow-[0_0_50px_rgba(6,182,212,0.1)]">
+                <p className="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400 text-center">
+                  {currentT.gainBoxTitle}
+                </p>
+                <p className="text-slate-200 text-center">
+                  {currentT.gainBoxDesc1}<span className="font-bold">{currentT.gainBoxDesc2}</span>{currentT.gainBoxDesc3}
+                </p>
               </div>
+
+              <div className="space-y-3">
+                <p className="font-semibold text-slate-100">{currentT.gainNoTitle}</p>
+                {currentT.gainNoItems.map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 pl-4">
+                    <div className="w-2 h-2 bg-slate-600 rounded-full" />
+                    <span className="line-through text-slate-500">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-3 pt-4">
+                <p className="font-semibold text-slate-100">{currentT.gainYesTitle}</p>
+                {currentT.gainYesItems.map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 pl-4">
+                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+                    <span className="text-cyan-300">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-3xl font-bold text-center py-8 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-amber-400 to-cyan-400">
+                {currentT.gainFinal}
+              </p>
             </div>
           </div>
         </div>
@@ -676,123 +676,124 @@ export default function ElVisionLanding() {
 
       {/* The Method Section */}
       <section className="relative py-32 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-8">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 font-bold">
+        <div className="max-w-5xl mx-auto">
+          <div className="space-y-12">
+            <div className="flex flex-col items-center text-center space-y-6">
+              <div className="w-16 h-16 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 text-xl font-bold">
                 {currentT.methodNum}
               </div>
-              <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-bold">
-                  <span className="text-amber-400">{currentT.methodLabel}</span>
-                  <br />
-                  <span className="text-slate-200">{currentT.methodTitle}</span>
-                </h2>
-                
-                <div className="space-y-8 text-lg text-slate-300 leading-relaxed">
-                  <div className="bg-gradient-to-r from-slate-800/80 to-slate-800/40 backdrop-blur-sm border-l-4 border-cyan-400 rounded-r-xl p-6">
-                    <p className="font-bold text-slate-100 mb-2">{currentT.methodRumus}</p>
-                    <p>{currentT.methodAtom1}<span className="text-cyan-400 font-semibold">{currentT.methodAtom2}</span>{currentT.methodAtom3}<span className="text-amber-400 font-semibold">{currentT.methodAtom4}</span>.</p>
-                    <p className="mt-2">{currentT.methodNiat1}<span className="text-white font-bold">{currentT.methodNiat2}</span>.</p>
-                  </div>
+              <h2 className="text-5xl md:text-7xl font-bold">
+                <span className="text-amber-400">{currentT.methodLabel}</span>
+                <br />
+                <span className="text-slate-200">{currentT.methodTitle}</span>
+              </h2>
+            </div>
+            
+            <div className="space-y-12 text-lg text-slate-300 leading-relaxed max-w-4xl mx-auto">
+              <div className="bg-gradient-to-r from-slate-800/80 to-slate-800/40 backdrop-blur-sm border-l-4 border-cyan-400 rounded-r-xl p-8 text-center md:text-left">
+                <p className="font-bold text-slate-100 text-xl mb-2">{currentT.methodRumus}</p>
+                <p className="text-lg">{currentT.methodAtom1}<span className="text-cyan-400 font-semibold">{currentT.methodAtom2}</span>{currentT.methodAtom3}<span className="text-amber-400 font-semibold">{currentT.methodAtom4}</span>.</p>
+                <p className="mt-2 text-lg">{currentT.methodNiat1}<span className="text-white font-bold">{currentT.methodNiat2}</span>.</p>
+              </div>
 
-                  {/* Niat Cards */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {/* Deep Release */}
-                    <div className="group bg-slate-800/50 backdrop-blur-sm border-2 border-amber-500/30 hover:border-amber-500/60 rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.2)] hover:scale-105">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
-                          <div className="w-4 h-4 rounded-full bg-amber-400" />
-                        </div>
-                        <div>
-                          <div className="text-xs text-amber-400 font-semibold tracking-wider">{currentT.neutronLabel}</div>
-                          <div className="text-lg font-bold text-slate-100">{currentT.neutronTitle}</div>
-                        </div>
-                      </div>
-                      <p className="text-slate-300 mb-3">
-                        {currentT.neutronDesc}
-                      </p>
-                      <div className="space-y-2 text-sm">
-                        <p className="text-amber-400 font-semibold">{currentT.neutronRasakan}</p>
-                        <ul className="space-y-1 text-slate-400">
-                          {currentT.neutronItems.map((item, i) => (
-                            <li key={i}>• {item}</li>
-                          ))}
-                        </ul>
-                      </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="group bg-slate-800/50 backdrop-blur-sm border-2 border-amber-500/30 hover:border-amber-500/60 rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.2)] hover:scale-105">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
+                      <div className="w-4 h-4 rounded-full bg-amber-400" />
                     </div>
-
-                    {/* Deep Faith */}
-                    <div className="group bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-500/60 rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.2)] hover:scale-105">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center">
-                          <div className="w-4 h-4 rounded-full bg-cyan-400" />
-                        </div>
-                        <div>
-                          <div className="text-xs text-cyan-400 font-semibold tracking-wider">{currentT.protonLabel}</div>
-                          <div className="text-lg font-bold text-slate-100">{currentT.protonTitle}</div>
-                        </div>
-                      </div>
-                      <p className="text-slate-300 mb-3">
-                        {currentT.protonDesc}
-                      </p>
-                      <div className="space-y-2 text-sm">
-                        <p className="text-cyan-400 font-semibold">{currentT.protonRasakan}</p>
-                        <ul className="space-y-1 text-slate-400">
-                          {currentT.protonItems.map((item, i) => (
-                            <li key={i}>• {item}</li>
-                          ))}
-                        </ul>
-                      </div>
+                    <div>
+                      <div className="text-xs text-amber-400 font-semibold tracking-wider">{currentT.neutronLabel}</div>
+                      <div className="text-lg font-bold text-slate-100">{currentT.neutronTitle}</div>
                     </div>
                   </div>
-
-                  {/* Kunci Eksekusi */}
-                  <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-8 space-y-4">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-amber-400 rounded-lg" />
-                      <h3 className="text-2xl font-bold text-slate-100">{currentT.kunciTitle}</h3>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <p className="text-xl font-semibold text-slate-100">
-                        {currentT.kunciLead1}<span className="text-red-400">{currentT.kunciLead2}</span>
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2">
-                        {['Tumaninah', 'Alpha', 'Theta', 'Delta'].map((state, i) => (
-                          <span key={i} className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-full text-sm text-slate-300">
-                            {state}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="space-y-3 pt-4 border-t border-slate-700">
-                        {currentT.kunciRules.map((rule, i) => (
-                          <div key={i} className="flex items-center gap-3">
-                            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center">
-                              <svg className="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                              </svg>
-                            </div>
-                            <span className="text-slate-300">{rule}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="bg-gradient-to-r from-cyan-500/10 to-amber-500/10 border border-cyan-500/30 rounded-lg p-4 mt-6">
-                        <p className="text-cyan-300 font-semibold">{currentT.kunciBox1}</p>
-                        <p className="text-slate-400 text-sm mt-1">{currentT.kunciBox2}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="text-center py-4">
-                    <p className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-cyan-400 to-amber-400">
-                      {currentT.methodFinal}
-                    </p>
+                  <p className="text-slate-300 mb-3">{currentT.neutronDesc}</p>
+                  <div className="space-y-2 text-sm">
+                    <p className="text-amber-400 font-semibold">{currentT.neutronRasakan}</p>
+                    <ul className="space-y-1 text-slate-400">
+                      {currentT.neutronItems.map((item, i) => (<li key={i}>• {item}</li>))}
+                    </ul>
                   </div>
                 </div>
+
+                <div className="group bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-500/60 rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_40px_rgba(6,182,212,0.2)] hover:scale-105">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center">
+                      <div className="w-4 h-4 rounded-full bg-cyan-400" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-cyan-400 font-semibold tracking-wider">{currentT.protonLabel}</div>
+                      <div className="text-lg font-bold text-slate-100">{currentT.protonTitle}</div>
+                    </div>
+                  </div>
+                  <p className="text-slate-300 mb-3">{currentT.protonDesc}</p>
+                  <div className="space-y-2 text-sm">
+                    <p className="text-cyan-400 font-semibold">{currentT.protonRasakan}</p>
+                    <ul className="space-y-1 text-slate-400">
+                      {currentT.protonItems.map((item, i) => (<li key={i}>• {item}</li>))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-8 space-y-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-amber-400 rounded-lg" />
+                  <h3 className="text-2xl font-bold text-slate-100">{currentT.kunciTitle}</h3>
+                </div>
+                
+                <div className="space-y-6">
+                  <p className="text-2xl font-semibold text-slate-100">
+                    {currentT.kunciLead1}<span className="text-red-400">{currentT.kunciLead2}</span>
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {['Tumaninah', 'Alpha', 'Theta', 'Delta'].map((state, i) => (
+                      <span key={i} className="px-4 py-2 bg-slate-700/50 border border-slate-600 rounded-full text-sm text-slate-300">
+                        {state}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="bg-slate-950/50 border border-cyan-500/30 rounded-xl p-6 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <Target className="w-6 h-6 text-cyan-400" />
+                      <h4 className="text-xl font-bold text-cyan-400">{currentT.kunciFocusTitle}</h4>
+                    </div>
+                    <p className="text-slate-200 text-lg leading-relaxed">
+                      {currentT.kunciFocusDesc}
+                    </p>
+                    <div className="pt-4 border-t border-slate-800">
+                      <p className="text-amber-400 font-bold text-xl">
+                        {currentT.kunciFiftyPercent}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-4 border-t border-slate-700">
+                    {currentT.kunciRules.map((rule, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center">
+                          <svg className="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </div>
+                        <span className="text-slate-300">{rule}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-gradient-to-r from-cyan-500/10 to-amber-500/10 border border-cyan-500/30 rounded-lg p-4 mt-6">
+                    <p className="text-cyan-300 font-semibold">{currentT.kunciBox1}</p>
+                    <p className="text-slate-400 text-sm mt-1">{currentT.kunciBox2}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center py-4">
+                <p className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-cyan-400 to-amber-400">
+                  {currentT.methodFinal}
+                </p>
               </div>
             </div>
           </div>
@@ -801,43 +802,29 @@ export default function ElVisionLanding() {
 
       {/* Statistics Section */}
       <section className="relative py-32 px-6 md:px-12 bg-slate-900/50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
-              {currentT.statsTitle}
-            </h2>
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">{currentT.statsTitle}</h2>
             <p className="text-xl text-slate-400">{currentT.statsSub}</p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-6">
-            {/* Too Much Release */}
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-amber-500/30 rounded-xl p-6 text-center">
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-amber-500/30 rounded-xl p-6">
               <div className="text-5xl font-bold text-amber-400 mb-2">50%</div>
               <div className="text-lg font-semibold text-slate-200 mb-3">{currentT.statsFail1Title}</div>
               <p className="text-sm text-slate-400 mb-4">{currentT.statsFail1Desc}</p>
-              <div className="inline-block px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-sm font-semibold">
-                {currentT.statsStatusFail}
-              </div>
+              <div className="inline-block px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-sm font-semibold">{currentT.statsStatusFail}</div>
             </div>
-
-            {/* Too Much Faith */}
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-6 text-center">
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-6">
               <div className="text-5xl font-bold text-cyan-400 mb-2">40%</div>
               <div className="text-lg font-semibold text-slate-200 mb-3">{currentT.statsFail2Title}</div>
               <p className="text-sm text-slate-400 mb-4">{currentT.statsFail2Desc}</p>
-              <div className="inline-block px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-sm font-semibold">
-                {currentT.statsStatusFail}
-              </div>
+              <div className="inline-block px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-sm font-semibold">{currentT.statsStatusFail}</div>
             </div>
-
-            {/* Balanced */}
-            <div className="bg-gradient-to-br from-cyan-500/20 to-amber-500/20 backdrop-blur-sm border-2 border-emerald-500/50 rounded-xl p-6 text-center shadow-[0_0_40px_rgba(16,185,129,0.2)]">
+            <div className="bg-gradient-to-br from-cyan-500/20 to-amber-500/20 backdrop-blur-sm border-2 border-emerald-500/50 rounded-xl p-6 shadow-[0_0_40px_rgba(16,185,129,0.2)]">
               <div className="text-5xl font-bold text-emerald-400 mb-2">10%</div>
               <div className="text-lg font-semibold text-slate-200 mb-3">{currentT.statsWinTitle}</div>
               <p className="text-sm text-slate-400 mb-4">{currentT.statsWinDesc}</p>
-              <div className="inline-block px-4 py-2 bg-emerald-500/20 border border-emerald-500/50 rounded-full text-emerald-400 text-sm font-semibold">
-                {currentT.statsStatusWin}
-              </div>
+              <div className="inline-block px-4 py-2 bg-emerald-500/20 border border-emerald-500/50 rounded-full text-emerald-400 text-sm font-semibold">{currentT.statsStatusWin}</div>
             </div>
           </div>
         </div>
@@ -859,13 +846,8 @@ export default function ElVisionLanding() {
           </div>
         </div>
 
-        {/* Testimonies Section */}
         <div className="mb-20">
-          <h2 className="text-4xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400">
-            {currentT.testiTitle}
-          </h2>
-          
-          {/* Quote Cards */}
+          <h2 className="text-4xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400">{currentT.testiTitle}</h2>
           <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-5xl mx-auto">
             {quotes.map((quote, index) => (
               <div key={index} className="bg-slate-900/50 border border-slate-700 rounded-xl p-6 backdrop-blur-sm">
@@ -874,48 +856,28 @@ export default function ElVisionLanding() {
               </div>
             ))}
           </div>
-
-          {/* Video Testimonies */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {testimonies.map((testimony, index) => (
-              <div key={index} className="group">
-                <div className="bg-slate-900/50 border border-slate-700 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all">
-                  <div className="relative aspect-[9/16]">
-                    <video
-                      className="w-full h-full object-cover"
-                      poster={testimony.poster}
-                      controls
-                      preload="metadata"
-                    >
-                      <source src={testimony.video} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                  <div className="p-4 text-center">
-                    <p className="font-semibold text-cyan-400">{testimony.name}</p>
-                    {testimony.title && <p className="text-sm text-gray-300">{testimony.title}</p>}
-                    {testimony.description && <p className="text-xs text-gray-400">{testimony.description}</p>}
-                  </div>
+              <div key={index} className="group bg-slate-900/50 border border-slate-700 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all">
+                <div className="relative aspect-[9/16]">
+                  <video className="w-full h-full object-cover" poster={testimony.poster} controls preload="metadata">
+                    <source src={testimony.video} type="video/mp4" />
+                  </video>
+                </div>
+                <div className="p-4 text-center">
+                  <p className="font-semibold text-cyan-400">{testimony.name}</p>
+                  {testimony.title && <p className="text-sm text-gray-300">{testimony.title}</p>}
+                  {testimony.description && <p className="text-xs text-gray-400">{testimony.description}</p>}
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Community Images */}
           <div className="mt-20">
-            <h2 className="text-4xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-cyan-400">
-              {currentT.testiCommTitle}
-            </h2>
+            <h2 className="text-4xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-cyan-400">{currentT.testiCommTitle}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {communityImages.map((imageUrl, index) => (
-                <div key={index} className="group">
-                  <div className="bg-slate-900/50 border border-slate-700 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all">
-                    <img
-                      src={imageUrl}
-                      alt={`Testimoni Komunitas ${index + 1}`}
-                      className="w-full h-auto object-cover rounded-xl"
-                    />
-                  </div>
+                <div key={index} className="bg-slate-900/50 border border-slate-700 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all">
+                  <img src={imageUrl} alt={`Testimoni ${index + 1}`} className="w-full h-auto object-cover rounded-xl" />
                 </div>
               ))}
             </div>
@@ -924,31 +886,19 @@ export default function ElVisionLanding() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-32 px-6 md:px-12">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-8">
-            {currentT.ctaTitle}
-          </h2>
-          
+      <section className="relative py-32 px-6 md:px-12 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-8">{currentT.ctaTitle}</h2>
           <div className="space-y-6 text-xl text-slate-300 mb-12">
-            <p>
-              {currentT.ctaSub1}
-            </p>
-            <p>
-              {currentT.ctaSub2}
-            </p>
+            <p>{currentT.ctaSub1}</p>
+            <p>{currentT.ctaSub2}</p>
           </div>
-
           <div className="inline-block space-y-4 mb-12">
             <p className="text-2xl font-bold text-slate-100">{currentT.ctaFinal}</p>
             <p className="text-lg text-slate-400">{currentT.ctaWait}</p>
           </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="https://app.elvisiongroup.com"
-              className="group relative px-10 py-5 bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 rounded-xl font-bold text-lg text-slate-950 transition-all duration-300 hover:shadow-[0_0_60px_rgba(6,182,212,0.6)] hover:scale-105 overflow-hidden inline-block"
-            >
+          <div className="flex justify-center">
+            <a href="https://app.elvisiongroup.com" className="group relative px-10 py-5 bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 rounded-xl font-bold text-lg text-slate-950 transition-all duration-300 hover:shadow-[0_0_60px_rgba(6,182,212,0.6)] hover:scale-105 overflow-hidden inline-block">
               <span className="relative z-10">{currentT.ctaButton}</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </a>
@@ -962,21 +912,15 @@ export default function ElVisionLanding() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="text-center md:text-left">
               <div className="text-4xl font-black mb-1">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400">
-                  DEEP FAITH
-                </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400">DEEP FAITH</span>
               </div>
               <p className="text-slate-500 text-sm mb-1">{currentT.footerDesc}</p>
               <p className="text-slate-600 italic text-sm">{currentT.footerTag}</p>
             </div>
-
             <div className="flex gap-8 text-sm text-slate-400">
-              {currentT.footerLinks.map((link, i) => (
-                <a key={i} href="#" className="hover:text-cyan-400 transition-colors">{link}</a>
-              ))}
+              {currentT.footerLinks.map((link, i) => (<a key={i} href="#" className="hover:text-cyan-400 transition-colors">{link}</a>))}
             </div>
           </div>
-
           <div className="mt-12 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
             <p>{currentT.footerCopyright}</p>
             <p className="mt-2 text-xs">{currentT.footerSub}</p>
