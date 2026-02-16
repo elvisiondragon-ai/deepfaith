@@ -1,15 +1,368 @@
 import { useState, useEffect } from 'react';
-import { CheckCircle, Quote } from 'lucide-react';
+import { CheckCircle, Quote, Globe } from 'lucide-react';
+
+type Language = 'id' | 'en';
+
+interface Translation {
+  switch: string;
+  badge: string;
+  heroTitle: string;
+  heroSub1: string;
+  heroSub2: string;
+  heroSub3: string;
+  heroDesc1: string;
+  heroDesc2: string;
+  painNum: string;
+  painLabel: string;
+  painTitle: string;
+  painLead1: string;
+  painLead2: string;
+  painLead3: string;
+  painFactTitle: string;
+  painFact1Label: string;
+  painFact2Label: string;
+  painAnalogy1: string;
+  painAnalogy2: string;
+  painResultTitle: string;
+  painResults: string[];
+  painFinal1: string;
+  painFinal2: string;
+  painFinal3: string;
+  gainNum: string;
+  gainLabel: string;
+  gainTitle: string;
+  gainLead1: string;
+  gainLead2: string;
+  gainLead3: string;
+  gainLead4: string;
+  gainBoxTitle: string;
+  gainBoxDesc1: string;
+  gainBoxDesc2: string;
+  gainBoxDesc3: string;
+  gainNoTitle: string;
+  gainNoItems: string[];
+  gainYesTitle: string;
+  gainYesItems: string[];
+  gainFinal: string;
+  methodNum: string;
+  methodLabel: string;
+  methodTitle: string;
+  methodRumus: string;
+  methodAtom1: string;
+  methodAtom2: string;
+  methodAtom3: string;
+  methodAtom4: string;
+  methodNiat1: string;
+  methodNiat2: string;
+  neutronLabel: string;
+  neutronTitle: string;
+  neutronDesc: string;
+  neutronRasakan: string;
+  neutronItems: string[];
+  protonLabel: string;
+  protonTitle: string;
+  protonDesc: string;
+  protonRasakan: string;
+  protonItems: string[];
+  kunciTitle: string;
+  kunciLead1: string;
+  kunciLead2: string;
+  kunciRules: string[];
+  kunciBox1: string;
+  kunciBox2: string;
+  methodFinal: string;
+  statsTitle: string;
+  statsSub: string;
+  statsFail1Title: string;
+  statsFail1Desc: string;
+  statsFail2Title: string;
+  statsFail2Desc: string;
+  statsWinTitle: string;
+  statsWinDesc: string;
+  statsStatusFail: string;
+  statsStatusWin: string;
+  resultsTitle: string;
+  resultsItems: string[];
+  testiTitle: string;
+  testiCommTitle: string;
+  ctaTitle: string;
+  ctaSub1: string;
+  ctaSub2: string;
+  ctaFinal: string;
+  ctaWait: string;
+  ctaButton: string;
+  footerDesc: string;
+  footerTag: string;
+  footerLinks: string[];
+  footerCopyright: string;
+  footerSub: string;
+}
 
 export default function ElVisionLanding() {
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [lang, setLang] = useState<Language>('id');
+
+  const t: Record<Language, Translation> = {
+    id: {
+      switch: "English",
+      badge: "eL Vision True Power",
+      heroTitle: "DEEP FAITH",
+      heroSub1: "KENAPA KEYAKINAN",
+      heroSub2: "DAN KEINGINANMU",
+      heroSub3: "HANCUR LEBUR?",
+      heroDesc1: "Bukan karena kurang usaha. Tapi karena kamu menggunakan ",
+      heroDesc2: "ALAT YANG SALAH.",
+      painNum: "01",
+      painLabel: "THE PAIN:",
+      painTitle: "Kamu Bekerja di Alamat yang Salah",
+      painLead1: "Selama ini, kamu menggunakan ",
+      painLead2: "Alam Sadar",
+      painLead3: " untuk mengejar mimpi. Dan itulah akar kehancuranmu.",
+      painFactTitle: "Alam Sadar itu LAMBAT. TERBATAS. BOROS ENERGI.",
+      painFact1Label: "Alam Sadar",
+      painFact2Label: "Alam Bawah Sadar",
+      painAnalogy1: "Kamu pakai motor bebek untuk lomba MotoGP. Kamu pakai pisau dapur untuk bedah jantung. ",
+      painAnalogy2: "Salah alamat, bro.",
+      painResultTitle: "Dan hasilnya?",
+      painResults: [
+        'Lelah mental yang luar biasa',
+        'Stres berulang karena realita tidak sesuai "rencana"',
+        'Obsesi yang menggerogoti ketenangan',
+        'Kegagalan yang datang lagi dan lagi'
+      ],
+      painFinal1: "Ini bukan soal niat kurang kuat. Ini soal kamu memakai sistem yang ",
+      painFinal2: "TIDAK DIDESAIN",
+      painFinal3: " untuk pekerjaan ini.",
+      gainNum: "02",
+      gainLabel: "THE GAIN:",
+      gainTitle: "Probabilitas Menang 90%++",
+      gainLead1: "Bayangkan: Kamu ",
+      gainLead2: "berhenti berpikir",
+      gainLead3: " dengan Alam Sadar.",
+      gainLead4: "Kamu berhenti ngotot. Berhenti ngoprek strategi dengan logika. Berhenti paksa semesta pakai tenaga otot.",
+      gainBoxTitle: "Probabilitas kemenanganmu melonjak hingga 90%++",
+      gainBoxDesc1: "Karena Alam Bawah Sadar bekerja ",
+      gainBoxDesc2: "11 juta kali lebih cepat",
+      gainBoxDesc3: ". Dia terhubung langsung dengan Hukum Alam—dengan Quantum Field—dengan Takdir yang Allah rancang.",
+      gainNoTitle: "Kamu tidak perlu lagi:",
+      gainNoItems: [
+        'Overthinking strategi',
+        'Menguras energi untuk "membuat sesuatu terjadi"',
+        'Gelisah menunggu hasil'
+      ],
+      gainYesTitle: "Sebaliknya:",
+      gainYesItems: [
+        'Pencapaian terjadi secara alami',
+        'Peluang datang tanpa kamu kejar',
+        'Jalan terbuka tanpa kamu paksakan'
+      ],
+      gainFinal: "EFFORTLESS. EFISIEN. MASIF.",
+      methodNum: "03",
+      methodLabel: "THE METHOD:",
+      methodTitle: "Bypass Alam Bawah Sadar",
+      methodRumus: "Rumus Keseimbangan Atom:",
+      methodAtom1: "Atom terbagi dua: ",
+      methodAtom2: "Proton (Positif)",
+      methodAtom3: " dan ",
+      methodAtom4: "Neutron (Netral)",
+      methodNiat1: "Begitu pula Alam Bawah Sadarmu butuh ",
+      methodNiat2: "DUA NIAT SEIMBANG",
+      neutronLabel: "NEUTRON",
+      neutronTitle: "DEEP RELEASE",
+      neutronDesc: "\"Saya melepas. Saya tidak terobsesi. Saya ikhlas pada apapun hasilnya.\"",
+      neutronRasakan: "RASAKAN sensasi:",
+      neutronItems: [
+        'Bebas dari cengkeraman hasil',
+        'Tidak ada gelisah',
+        'Netral, tenang, tanpa tekanan'
+      ],
+      protonLabel: "PROTON",
+      protonTitle: "DEEP FAITH",
+      protonDesc: "\"Saya merasakan SEKARANG, saya sedang mendapatkan / ini sudah terjadi.\"",
+      protonRasakan: "RASAKAN sensasi:",
+      protonItems: [
+        'Seolah realita SUDAH terwujud',
+        'Positif, penuh, sudah ada',
+        'Bukan masa depan, tapi SEKARANG'
+      ],
+      kunciTitle: "Kunci Eksekusi",
+      kunciLead1: "Alam Sadarmu hanya punya satu tugas: ",
+      kunciLead2: "DIAM.",
+      kunciRules: [
+        'Tidak boleh berpikir',
+        'Tidak boleh analisis',
+        'Tidak boleh skeptis'
+      ],
+      kunciBox1: "Biarkan NIAT yang bekerja—bukan pikiran.",
+      kunciBox2: "Niat itu bypass. Dia langsung masuk ke Alam Bawah Sadar tanpa harus dipikirkan.",
+      methodFinal: "NIAT ITU DIRASAKAN. BUKAN DILOGIKAKAN.",
+      statsTitle: "Dari Puluhan Ribu Orang yang Kami Saksikan",
+      statsSub: "90% orang gagal karena tidak seimbang",
+      statsFail1Title: "Terlalu Deep Release",
+      statsFail1Desc: "Terlalu santai, pasif",
+      statsFail2Title: "Terlalu Deep Faith",
+      statsFail2Desc: "Terlalu agresif, obsesif",
+      statsWinTitle: "Balance",
+      statsWinDesc: "Deep Faith + Deep Release",
+      statsStatusFail: "GAGAL",
+      statsStatusWin: "MENANG",
+      resultsTitle: "Hasilnya",
+      resultsItems: [
+        "Tujuan tercapai lebih natural",
+        "Relasi tetap stabil",
+        "Tubuh tidak kolaps",
+        "Mental tidak hancur",
+        "Hidup tetap utuh, bukan sekadar 'menang tapi rusak'"
+      ],
+      testiTitle: "Testimoni Nyata",
+      testiCommTitle: "Testimoni Komunitas",
+      ctaTitle: "Pertanyaan Terakhir Untukmu",
+      ctaSub1: "Apakah kamu masih mau membuang waktu dengan \"berpikir\" pakai Alam Sadar?",
+      ctaSub2: "Atau kamu siap mengaktifkan sistem yang benar—sistem yang didesain untuk mewujudkan mimpi dengan probabilitas 90%++?",
+      ctaFinal: "Pilihan ada di tanganmu.",
+      ctaWait: "Tapi Hukum Alam tidak menunggu.",
+      ctaButton: "Aktifkan Sistem Sekarang",
+      footerDesc: "by eL Vision",
+      footerTag: "eL Vision True Power",
+      footerLinks: ["Tentang", "Metode", "Testimoni", "Kontak"],
+      footerCopyright: "© 2024 Deep Faith by eL Vision. Mind Technology for Human Excellence.",
+      footerSub: "Combining Quantum Physics, Psychology, and Spiritual Wisdom."
+    },
+    en: {
+      switch: "Bahasa",
+      badge: "eL Vision True Power",
+      heroTitle: "DEEP FAITH",
+      heroSub1: "WHY YOUR",
+      heroSub2: "FAITH AND DESIRES",
+      heroSub3: "ARE SHATTERED?",
+      heroDesc1: "It's not for lack of effort. It's because you're using the ",
+      heroDesc2: "WRONG TOOL.",
+      painNum: "01",
+      painLabel: "THE PAIN:",
+      painTitle: "You're Working at the Wrong Address",
+      painLead1: "All this time, you've been using your ",
+      painLead2: "Conscious Mind",
+      painLead3: " to pursue dreams. And that is the root of your destruction.",
+      painFactTitle: "The Conscious Mind is SLOW. LIMITED. ENERGY-CONSUMING.",
+      painFact1Label: "Conscious Mind",
+      painFact2Label: "Subconscious Mind",
+      painAnalogy1: "You're using a moped for a MotoGP race. You're using a kitchen knife for heart surgery. ",
+      painAnalogy2: "Wrong address, bro.",
+      painResultTitle: "And the result?",
+      painResults: [
+        'Incredible mental exhaustion',
+        'Recurring stress because reality doesn\'t match the "plan"',
+        'Obsessions that eat away at your peace',
+        'Failure that comes again and again'
+      ],
+      painFinal1: "It's not about weak intention. It's about using a system that was ",
+      painFinal2: "NOT DESIGNED",
+      painFinal3: " for this job.",
+      gainNum: "02",
+      gainLabel: "THE GAIN:",
+      gainTitle: "90%++ Winning Probability",
+      gainLead1: "Imagine: You ",
+      gainLead2: "stop thinking",
+      gainLead3: " with your Conscious Mind.",
+      gainLead4: "You stop being stubborn. Stop tinkering with strategies using logic. Stop forcing the universe with muscle power.",
+      gainBoxTitle: "Your winning probability jumps to 90%++",
+      gainBoxDesc1: "Because the Subconscious Mind works ",
+      gainBoxDesc2: "11 million times faster",
+      gainBoxDesc3: ". It is directly connected to the Laws of Nature—the Quantum Field—the Destiny designed by Allah.",
+      gainNoTitle: "You no longer need to:",
+      gainNoItems: [
+        'Overthink strategies',
+        'Drain energy to "make something happen"',
+        'Anxiously wait for results'
+      ],
+      gainYesTitle: "Instead:",
+      gainYesItems: [
+        'Achievement happens naturally',
+        'Opportunities come without you chasing them',
+        'Paths open without being forced'
+      ],
+      gainFinal: "EFFORTLESS. EFFICIENT. MASSIVE.",
+      methodNum: "03",
+      methodLabel: "THE METHOD:",
+      methodTitle: "Bypass the Subconscious Mind",
+      methodRumus: "Atomic Balance Formula:",
+      methodAtom1: "Atoms are divided in two: ",
+      methodAtom2: "Proton (Positive)",
+      methodAtom3: " and ",
+      methodAtom4: "Neutron (Neutral)",
+      methodNiat1: "Similarly, your Subconscious Mind needs ",
+      methodNiat2: "TWO BALANCED INTENTIONS",
+      neutronLabel: "NEUTRON",
+      neutronTitle: "DEEP RELEASE",
+      neutronDesc: "\"I let go. I am not obsessed. I am at peace with whatever the outcome.\"",
+      neutronRasakan: "FEEL the sensation:",
+      neutronItems: [
+        'Free from the grip of the outcome',
+        'No anxiety',
+        'Neutral, calm, without pressure'
+      ],
+      protonLabel: "PROTON",
+      protonTitle: "DEEP FAITH",
+      protonDesc: "\"I feel it NOW, I am receiving it / it has already happened.\"",
+      protonRasakan: "FEEL the sensation:",
+      protonItems: [
+        'As if reality has ALREADY manifested',
+        'Positive, full, already there',
+        'Not the future, but NOW'
+      ],
+      kunciTitle: "Execution Key",
+      kunciLead1: "Your Conscious Mind has only one task: ",
+      kunciLead2: "BE SILENT.",
+      kunciRules: [
+        'Do not think',
+        'Do not analyze',
+        'Do not be skeptical'
+      ],
+      kunciBox1: "Let the INTENTION do the work—not the thoughts.",
+      kunciBox2: "Intention is a bypass. It enters the Subconscious Mind directly without having to be thought about.",
+      methodFinal: "INTENTION IS FELT. NOT LOGICIZED.",
+      statsTitle: "From Tens of Thousands of People We've Witnessed",
+      statsSub: "90% of people fail because they are unbalanced",
+      statsFail1Title: "Too Much Deep Release",
+      statsFail1Desc: "Too relaxed, passive",
+      statsFail2Title: "Too Much Deep Faith",
+      statsFail2Desc: "Too aggressive, obsessive",
+      statsWinTitle: "Balance",
+      statsWinDesc: "Deep Faith + Deep Release",
+      statsStatusFail: "FAIL",
+      statsStatusWin: "WIN",
+      resultsTitle: "The Results",
+      resultsItems: [
+        "Goals achieved more naturally",
+        "Relationships remain stable",
+        "Body doesn't collapse",
+        "Mental health intact",
+        "Life remains whole, not just 'winning but broken'"
+      ],
+      testiTitle: "Real Testimonies",
+      testiCommTitle: "Community Testimonies",
+      ctaTitle: "One Last Question For You",
+      ctaSub1: "Do you still want to waste time \"thinking\" with your Conscious Mind?",
+      ctaSub2: "Or are you ready to activate the correct system—the system designed to realize dreams with a 90%++ probability?",
+      ctaFinal: "The choice is in your hands.",
+      ctaWait: "But the Laws of Nature do not wait.",
+      ctaButton: "Activate System Now",
+      footerDesc: "by eL Vision",
+      footerTag: "eL Vision True Power",
+      footerLinks: ["About", "Method", "Testimony", "Contact"],
+      footerCopyright: "© 2024 Deep Faith by eL Vision. Mind Technology for Human Excellence.",
+      footerSub: "Combining Quantum Physics, Psychology, and Spiritual Wisdom."
+    }
+  };
+
+  const currentT = t[lang];
 
   const testimonies = [
     {
       name: "Agus",
-      title: "SH MH AGUS MULYADI",
-      description: "KEPALA INTELIJEN PANGANDARAN JAWA BARAT",
+      title: lang === 'id' ? "SH MH AGUS MULYADI" : "SH MH AGUS MULYADI",
+      description: lang === 'id' ? "KEPALA INTELIJEN PANGANDARAN JAWA BARAT" : "CHIEF OF INTELLIGENCE PANGANDARAN WEST JAVA",
       video: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/agus.mp4",
       poster: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/agus.jpg"
     },
@@ -22,14 +375,14 @@ export default function ElVisionLanding() {
     },
     {
       name: "Lena",
-      title: "ANAK SMA",
+      title: lang === 'id' ? "ANAK SMA" : "HIGH SCHOOL STUDENT",
       description: "",
       video: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/lena.mp4",
       poster: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/lena.jpg"
     },
     {
       name: "Umi",
-      title: "Pemilik Pesantren",
+      title: lang === 'id' ? "Pemilik Pesantren" : "Islamic Boarding School Owner",
       description: "",
       video: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/umi.mp4",
       poster: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/umi.jpg"
@@ -37,27 +390,27 @@ export default function ElVisionLanding() {
     {
       name: "Habib",
       title: "Umar",
-      description: "UStadz",
+      description: lang === 'id' ? "UStadz" : "Religious Teacher",
       video: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/habib.mp4",
       poster: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/habib.jpg"
     },
     {
       name: "Arif",
-      title: "Penyintas Kanker Otak Stage 4",
+      title: lang === 'id' ? "Penyintas Kanker Otak Stage 4" : "Stage 4 Brain Cancer Survivor",
       description: "",
       video: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/arif.mp4",
       poster: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/arif.jpg"
     },
     {
       name: "Felicia",
-      title: "Pengusaha",
+      title: lang === 'id' ? "Pengusaha" : "Entrepreneur",
       description: "",
       video: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/felicia.mp4",
       poster: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/felicia.jpg"
     },
     {
       name: "Dr Gumilar",
-      title: "HIPNOTERAPIST AND PEJABAT DAERAH",
+      title: lang === 'id' ? "HIPNOTERAPIST AND PEJABAT DAERAH" : "HYPNOTHERAPIST AND REGIONAL OFFICIAL",
       description: "DR GUMILAR",
       video: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/dr.mp4",
       poster: "https://tgojzhjujhjboboqygub.supabase.co/storage/v1/object/public/meta/dr.jpg"
@@ -96,10 +449,18 @@ export default function ElVisionLanding() {
   ];
 
   const quotes = [
-    "Saya baru sadar, selama ini saya selalu dapat apa yang saya mau — tapi selalu dibayar mahal. Setelah eL Vision, target tetap tercapai, tapi hidup saya tidak lagi berantakan.",
-    "Bukan motivasi. Bukan sugesti kosong. Yang berubah itu cara sistem dalam diri saya bekerja. Saya tidak lagi 'memaksa', tapi tetap bergerak.",
-    "Biasanya setiap naik level bisnis, pasti ada masalah keluarga atau kesehatan. Kali ini tidak. Itu yang paling terasa berbeda.",
-    "Saya kira stres adalah harga sukses. Ternyata itu hanya efek samping dari sistem bawah sadar yang salah set."
+    lang === 'id' 
+      ? "Saya baru sadar, selama ini saya selalu dapat apa yang saya mau — tapi selalu dibayar mahal. Setelah eL Vision, target tetap tercapai, tapi hidup saya tidak lagi berantakan."
+      : "I just realized, all this time I always got what I wanted — but it was always paid dearly. After eL Vision, targets are still achieved, but my life is no longer a mess.",
+    lang === 'id'
+      ? "Bukan motivasi. Bukan sugesti kosong. Yang berubah itu cara sistem dalam diri saya bekerja. Saya tidak lagi 'memaksa', tapi tetap bergerak."
+      : "Not motivation. Not empty suggestions. What changed was the way the system inside me worked. I no longer 'force', but keep moving.",
+    lang === 'id'
+      ? "Biasanya setiap naik level bisnis, pasti ada masalah keluarga atau kesehatan. Kali ini tidak. Itu yang paling terasa berbeda."
+      : "Usually every time the business level goes up, there are always family or health problems. Not this time. That's what feels most different.",
+    lang === 'id'
+      ? "Saya kira stres adalah harga sukses. Ternyata itu hanya efek samping dari sistem bawah sadar yang salah set."
+      : "I thought stress was the price of success. It turns out it's just a side effect of a wrongly set subconscious system."
   ];
 
   useEffect(() => {
@@ -111,6 +472,19 @@ export default function ElVisionLanding() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 font-sans overflow-x-hidden">
+      {/* Language Switcher */}
+      <div className="fixed top-6 right-6 z-50">
+        <button 
+          onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
+          className="flex items-center gap-2 px-4 py-2 bg-slate-900/50 backdrop-blur-md border border-cyan-500/30 rounded-full hover:border-cyan-400 transition-all group"
+        >
+          <Globe className="w-4 h-4 text-cyan-400 group-hover:rotate-180 transition-transform duration-500" />
+          <span className="text-sm font-semibold text-slate-200">
+            {currentT.switch}
+          </span>
+        </button>
+      </div>
+
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.1),transparent_50%)]" />
@@ -151,29 +525,29 @@ export default function ElVisionLanding() {
 
           <div className={`space-y-6 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="inline-block px-4 py-2 border border-cyan-500/50 rounded-full text-cyan-400 text-sm tracking-wider mb-4 bg-cyan-500/5 backdrop-blur-sm">
-              eL Vision True Power
+              {currentT.badge}
             </div>
             
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black leading-none tracking-tight mb-6">
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-300 to-amber-400">
-                DEEP FAITH
+                {currentT.heroTitle}
               </span>
             </h1>
             
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight">
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-300 to-amber-400">
-                KENAPA KEYAKINAN
+                {currentT.heroSub1}
               </span>
               <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-cyan-400">
-                DAN KEINGINANMU
+                {currentT.heroSub2}
               </span>
               <span className="block mt-2 text-red-500 drop-shadow-[0_0_20px_rgba(239,68,68,0.5)]">
-                HANCUR LEBUR?
+                {currentT.heroSub3}
               </span>
             </h2>
 
             <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
-              Bukan karena kurang usaha. Tapi karena kamu menggunakan <span className="text-cyan-400 font-semibold">ALAT YANG SALAH</span>.
+              {currentT.heroDesc1}<span className="text-cyan-400 font-semibold">{currentT.heroDesc2}</span>
             </p>
           </div>
         </div>
@@ -185,46 +559,41 @@ export default function ElVisionLanding() {
           <div className="space-y-8">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-red-500/20 border border-red-500/50 flex items-center justify-center text-red-400 font-bold">
-                01
+                {currentT.painNum}
               </div>
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-bold">
-                  <span className="text-red-400">THE PAIN:</span>
+                  <span className="text-red-400">{currentT.painLabel}</span>
                   <br />
-                  <span className="text-slate-200">Kamu Bekerja di Alamat yang Salah</span>
+                  <span className="text-slate-200">{currentT.painTitle}</span>
                 </h2>
                 
                 <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
                   <p className="text-xl font-semibold text-slate-100">
-                    Selama ini, kamu menggunakan <span className="text-cyan-400">Alam Sadar</span> untuk mengejar mimpi. Dan itulah akar kehancuranmu.
+                    {currentT.painLead1}<span className="text-cyan-400">{currentT.painLead2}</span>{currentT.painLead3}
                   </p>
                   
                   <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 space-y-4">
-                    <p className="font-bold text-xl text-amber-400">Alam Sadar itu LAMBAT. TERBATAS. BOROS ENERGI.</p>
+                    <p className="font-bold text-xl text-amber-400">{currentT.painFactTitle}</p>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="text-center p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
                         <div className="text-4xl font-bold text-red-400">40 bit/s</div>
-                        <div className="text-sm text-slate-400 mt-1">Alam Sadar</div>
+                        <div className="text-sm text-slate-400 mt-1">{currentT.painFact1Label}</div>
                       </div>
                       <div className="text-center p-4 bg-cyan-500/10 border border-cyan-500/30 rounded-lg">
                         <div className="text-4xl font-bold text-cyan-400">11M bit/s</div>
-                        <div className="text-sm text-slate-400 mt-1">Alam Bawah Sadar</div>
+                        <div className="text-sm text-slate-400 mt-1">{currentT.painFact2Label}</div>
                       </div>
                     </div>
                   </div>
 
                   <p>
-                    Kamu pakai motor bebek untuk lomba MotoGP. Kamu pakai pisau dapur untuk bedah jantung. <span className="text-red-400 font-bold">Salah alamat, bro.</span>
+                    {currentT.painAnalogy1}<span className="text-red-400 font-bold">{currentT.painAnalogy2}</span>
                   </p>
 
                   <div className="space-y-3">
-                    <p className="font-semibold text-slate-100">Dan hasilnya?</p>
-                    {[
-                      'Lelah mental yang luar biasa',
-                      'Stres berulang karena realita tidak sesuai "rencana"',
-                      'Obsesi yang menggerogoti ketenangan',
-                      'Kegagalan yang datang lagi dan lagi'
-                    ].map((item, i) => (
+                    <p className="font-semibold text-slate-100">{currentT.painResultTitle}</p>
+                    {currentT.painResults.map((item, i) => (
                       <div key={i} className="flex items-center gap-3 pl-4">
                         <div className="w-2 h-2 bg-red-400 rounded-full" />
                         <span>{item}</span>
@@ -233,7 +602,7 @@ export default function ElVisionLanding() {
                   </div>
 
                   <p className="text-xl font-bold text-slate-100 pt-4">
-                    Ini bukan soal niat kurang kuat. Ini soal kamu memakai sistem yang <span className="text-red-400">TIDAK DIDESAIN</span> untuk pekerjaan ini.
+                    {currentT.painFinal1}<span className="text-red-400">{currentT.painFinal2}</span>{currentT.painFinal3}
                   </p>
                 </div>
               </div>
@@ -248,40 +617,36 @@ export default function ElVisionLanding() {
           <div className="space-y-8">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-bold">
-                02
+                {currentT.gainNum}
               </div>
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-bold">
-                  <span className="text-cyan-400">THE GAIN:</span>
+                  <span className="text-cyan-400">{currentT.gainLabel}</span>
                   <br />
-                  <span className="text-slate-200">Probabilitas Menang 90%++</span>
+                  <span className="text-slate-200">{currentT.gainTitle}</span>
                 </h2>
                 
                 <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
                   <p className="text-xl font-semibold text-slate-100">
-                    Bayangkan: Kamu <span className="text-cyan-400">berhenti berpikir</span> dengan Alam Sadar.
+                    {currentT.gainLead1}<span className="text-cyan-400">{currentT.gainLead2}</span>{currentT.gainLead3}
                   </p>
                   
                   <p>
-                    Kamu berhenti ngotot. Berhenti ngoprek strategi dengan logika. Berhenti paksa semesta pakai tenaga otot.
+                    {currentT.gainLead4}
                   </p>
 
                   <div className="bg-gradient-to-br from-cyan-500/10 to-amber-500/10 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-8 space-y-4 shadow-[0_0_50px_rgba(6,182,212,0.1)]">
                     <p className="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400">
-                      Probabilitas kemenanganmu melonjak hingga 90%++
+                      {currentT.gainBoxTitle}
                     </p>
                     <p className="text-slate-200">
-                      Karena Alam Bawah Sadar bekerja <span className="font-bold">11 juta kali lebih cepat</span>. Dia terhubung langsung dengan Hukum Alam—dengan Quantum Field—dengan Takdir yang Allah rancang.
+                      {currentT.gainBoxDesc1}<span className="font-bold">{currentT.gainBoxDesc2}</span>{currentT.gainBoxDesc3}
                     </p>
                   </div>
 
                   <div className="space-y-3">
-                    <p className="font-semibold text-slate-100">Kamu tidak perlu lagi:</p>
-                    {[
-                      'Overthinking strategi',
-                      'Menguras energi untuk "membuat sesuatu terjadi"',
-                      'Gelisah menunggu hasil'
-                    ].map((item, i) => (
+                    <p className="font-semibold text-slate-100">{currentT.gainNoTitle}</p>
+                    {currentT.gainNoItems.map((item, i) => (
                       <div key={i} className="flex items-center gap-3 pl-4">
                         <div className="w-2 h-2 bg-slate-600 rounded-full" />
                         <span className="line-through text-slate-500">{item}</span>
@@ -290,12 +655,8 @@ export default function ElVisionLanding() {
                   </div>
 
                   <div className="space-y-3 pt-4">
-                    <p className="font-semibold text-slate-100">Sebaliknya:</p>
-                    {[
-                      'Pencapaian terjadi secara alami',
-                      'Peluang datang tanpa kamu kejar',
-                      'Jalan terbuka tanpa kamu paksakan'
-                    ].map((item, i) => (
+                    <p className="font-semibold text-slate-100">{currentT.gainYesTitle}</p>
+                    {currentT.gainYesItems.map((item, i) => (
                       <div key={i} className="flex items-center gap-3 pl-4">
                         <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
                         <span className="text-cyan-300">{item}</span>
@@ -304,7 +665,7 @@ export default function ElVisionLanding() {
                   </div>
 
                   <p className="text-2xl font-bold text-center py-8 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-amber-400 to-cyan-400">
-                    EFFORTLESS. EFISIEN. MASIF.
+                    {currentT.gainFinal}
                   </p>
                 </div>
               </div>
@@ -319,20 +680,20 @@ export default function ElVisionLanding() {
           <div className="space-y-8">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 font-bold">
-                03
+                {currentT.methodNum}
               </div>
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-bold">
-                  <span className="text-amber-400">THE METHOD:</span>
+                  <span className="text-amber-400">{currentT.methodLabel}</span>
                   <br />
-                  <span className="text-slate-200">Bypass Alam Bawah Sadar</span>
+                  <span className="text-slate-200">{currentT.methodTitle}</span>
                 </h2>
                 
                 <div className="space-y-8 text-lg text-slate-300 leading-relaxed">
                   <div className="bg-gradient-to-r from-slate-800/80 to-slate-800/40 backdrop-blur-sm border-l-4 border-cyan-400 rounded-r-xl p-6">
-                    <p className="font-bold text-slate-100 mb-2">Rumus Keseimbangan Atom:</p>
-                    <p>Atom terbagi dua: <span className="text-cyan-400 font-semibold">Proton (Positif)</span> dan <span className="text-amber-400 font-semibold">Neutron (Netral)</span>.</p>
-                    <p className="mt-2">Begitu pula Alam Bawah Sadarmu butuh <span className="text-white font-bold">DUA NIAT SEIMBANG</span>.</p>
+                    <p className="font-bold text-slate-100 mb-2">{currentT.methodRumus}</p>
+                    <p>{currentT.methodAtom1}<span className="text-cyan-400 font-semibold">{currentT.methodAtom2}</span>{currentT.methodAtom3}<span className="text-amber-400 font-semibold">{currentT.methodAtom4}</span>.</p>
+                    <p className="mt-2">{currentT.methodNiat1}<span className="text-white font-bold">{currentT.methodNiat2}</span>.</p>
                   </div>
 
                   {/* Niat Cards */}
@@ -344,19 +705,19 @@ export default function ElVisionLanding() {
                           <div className="w-4 h-4 rounded-full bg-amber-400" />
                         </div>
                         <div>
-                          <div className="text-xs text-amber-400 font-semibold tracking-wider">NEUTRON</div>
-                          <div className="text-lg font-bold text-slate-100">DEEP RELEASE</div>
+                          <div className="text-xs text-amber-400 font-semibold tracking-wider">{currentT.neutronLabel}</div>
+                          <div className="text-lg font-bold text-slate-100">{currentT.neutronTitle}</div>
                         </div>
                       </div>
                       <p className="text-slate-300 mb-3">
-                        "Saya melepas. Saya tidak terobsesi. Saya ikhlas pada apapun hasilnya."
+                        {currentT.neutronDesc}
                       </p>
                       <div className="space-y-2 text-sm">
-                        <p className="text-amber-400 font-semibold">RASAKAN sensasi:</p>
+                        <p className="text-amber-400 font-semibold">{currentT.neutronRasakan}</p>
                         <ul className="space-y-1 text-slate-400">
-                          <li>• Bebas dari cengkeraman hasil</li>
-                          <li>• Tidak ada gelisah</li>
-                          <li>• Netral, tenang, tanpa tekanan</li>
+                          {currentT.neutronItems.map((item, i) => (
+                            <li key={i}>• {item}</li>
+                          ))}
                         </ul>
                       </div>
                     </div>
@@ -368,19 +729,19 @@ export default function ElVisionLanding() {
                           <div className="w-4 h-4 rounded-full bg-cyan-400" />
                         </div>
                         <div>
-                          <div className="text-xs text-cyan-400 font-semibold tracking-wider">PROTON</div>
-                          <div className="text-lg font-bold text-slate-100">DEEP FAITH</div>
+                          <div className="text-xs text-cyan-400 font-semibold tracking-wider">{currentT.protonLabel}</div>
+                          <div className="text-lg font-bold text-slate-100">{currentT.protonTitle}</div>
                         </div>
                       </div>
                       <p className="text-slate-300 mb-3">
-                        "Saya merasakan SEKARANG, saya sedang mendapatkan / ini sudah terjadi."
+                        {currentT.protonDesc}
                       </p>
                       <div className="space-y-2 text-sm">
-                        <p className="text-cyan-400 font-semibold">RASAKAN sensasi:</p>
+                        <p className="text-cyan-400 font-semibold">{currentT.protonRasakan}</p>
                         <ul className="space-y-1 text-slate-400">
-                          <li>• Seolah realita SUDAH terwujud</li>
-                          <li>• Positif, penuh, sudah ada</li>
-                          <li>• Bukan masa depan, tapi SEKARANG</li>
+                          {currentT.protonItems.map((item, i) => (
+                            <li key={i}>• {item}</li>
+                          ))}
                         </ul>
                       </div>
                     </div>
@@ -390,12 +751,12 @@ export default function ElVisionLanding() {
                   <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-8 space-y-4">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-amber-400 rounded-lg" />
-                      <h3 className="text-2xl font-bold text-slate-100">Kunci Eksekusi</h3>
+                      <h3 className="text-2xl font-bold text-slate-100">{currentT.kunciTitle}</h3>
                     </div>
                     
                     <div className="space-y-4">
                       <p className="text-xl font-semibold text-slate-100">
-                        Alam Sadarmu hanya punya satu tugas: <span className="text-red-400">DIAM.</span>
+                        {currentT.kunciLead1}<span className="text-red-400">{currentT.kunciLead2}</span>
                       </p>
                       
                       <div className="flex flex-wrap gap-2">
@@ -407,11 +768,7 @@ export default function ElVisionLanding() {
                       </div>
 
                       <div className="space-y-3 pt-4 border-t border-slate-700">
-                        {[
-                          'Tidak boleh berpikir',
-                          'Tidak boleh analisis',
-                          'Tidak boleh skeptis'
-                        ].map((rule, i) => (
+                        {currentT.kunciRules.map((rule, i) => (
                           <div key={i} className="flex items-center gap-3">
                             <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center">
                               <svg className="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -424,15 +781,15 @@ export default function ElVisionLanding() {
                       </div>
 
                       <div className="bg-gradient-to-r from-cyan-500/10 to-amber-500/10 border border-cyan-500/30 rounded-lg p-4 mt-6">
-                        <p className="text-cyan-300 font-semibold">Biarkan NIAT yang bekerja—bukan pikiran.</p>
-                        <p className="text-slate-400 text-sm mt-1">Niat itu bypass. Dia langsung masuk ke Alam Bawah Sadar tanpa harus dipikirkan.</p>
+                        <p className="text-cyan-300 font-semibold">{currentT.kunciBox1}</p>
+                        <p className="text-slate-400 text-sm mt-1">{currentT.kunciBox2}</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="text-center py-4">
                     <p className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-cyan-400 to-amber-400">
-                      NIAT ITU DIRASAKAN. BUKAN DILOGIKAKAN.
+                      {currentT.methodFinal}
                     </p>
                   </div>
                 </div>
@@ -447,39 +804,39 @@ export default function ElVisionLanding() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
-              Dari Puluhan Ribu Orang yang Kami Saksikan
+              {currentT.statsTitle}
             </h2>
-            <p className="text-xl text-slate-400">90% orang gagal karena tidak seimbang</p>
+            <p className="text-xl text-slate-400">{currentT.statsSub}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Too Much Release */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-amber-500/30 rounded-xl p-6 text-center">
               <div className="text-5xl font-bold text-amber-400 mb-2">50%</div>
-              <div className="text-lg font-semibold text-slate-200 mb-3">Terlalu Deep Release</div>
-              <p className="text-sm text-slate-400 mb-4">Terlalu santai, pasif</p>
+              <div className="text-lg font-semibold text-slate-200 mb-3">{currentT.statsFail1Title}</div>
+              <p className="text-sm text-slate-400 mb-4">{currentT.statsFail1Desc}</p>
               <div className="inline-block px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-sm font-semibold">
-                GAGAL
+                {currentT.statsStatusFail}
               </div>
             </div>
 
             {/* Too Much Faith */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-6 text-center">
               <div className="text-5xl font-bold text-cyan-400 mb-2">40%</div>
-              <div className="text-lg font-semibold text-slate-200 mb-3">Terlalu Deep Faith</div>
-              <p className="text-sm text-slate-400 mb-4">Terlalu agresif, obsesif</p>
+              <div className="text-lg font-semibold text-slate-200 mb-3">{currentT.statsFail2Title}</div>
+              <p className="text-sm text-slate-400 mb-4">{currentT.statsFail2Desc}</p>
               <div className="inline-block px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-sm font-semibold">
-                GAGAL
+                {currentT.statsStatusFail}
               </div>
             </div>
 
             {/* Balanced */}
             <div className="bg-gradient-to-br from-cyan-500/20 to-amber-500/20 backdrop-blur-sm border-2 border-emerald-500/50 rounded-xl p-6 text-center shadow-[0_0_40px_rgba(16,185,129,0.2)]">
               <div className="text-5xl font-bold text-emerald-400 mb-2">10%</div>
-              <div className="text-lg font-semibold text-slate-200 mb-3">Balance</div>
-              <p className="text-sm text-slate-400 mb-4">Deep Faith + Deep Release</p>
+              <div className="text-lg font-semibold text-slate-200 mb-3">{currentT.statsWinTitle}</div>
+              <p className="text-sm text-slate-400 mb-4">{currentT.statsWinDesc}</p>
               <div className="inline-block px-4 py-2 bg-emerald-500/20 border border-emerald-500/50 rounded-full text-emerald-400 text-sm font-semibold">
-                MENANG
+                {currentT.statsStatusWin}
               </div>
             </div>
           </div>
@@ -490,15 +847,9 @@ export default function ElVisionLanding() {
       <section className="relative py-20 px-6 md:px-12 bg-slate-950">
         <div className="max-w-4xl mx-auto mb-20">
           <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border border-green-500/30 rounded-2xl p-8">
-            <h3 className="text-3xl font-bold mb-6 text-center">Hasilnya</h3>
+            <h3 className="text-3xl font-bold mb-6 text-center">{currentT.resultsTitle}</h3>
             <div className="grid md:grid-cols-2 gap-4">
-              {[
-                "Tujuan tercapai lebih natural",
-                "Relasi tetap stabil",
-                "Tubuh tidak kolaps",
-                "Mental tidak hancur",
-                "Hidup tetap utuh, bukan sekadar 'menang tapi rusak'"
-              ].map((result, index) => (
+              {currentT.resultsItems.map((result, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
                   <p className="text-gray-200">{result}</p>
@@ -511,7 +862,7 @@ export default function ElVisionLanding() {
         {/* Testimonies Section */}
         <div className="mb-20">
           <h2 className="text-4xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-amber-400">
-            Testimoni Nyata
+            {currentT.testiTitle}
           </h2>
           
           {/* Quote Cards */}
@@ -553,7 +904,7 @@ export default function ElVisionLanding() {
           {/* Community Images */}
           <div className="mt-20">
             <h2 className="text-4xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-cyan-400">
-              Testimoni Komunitas
+              {currentT.testiCommTitle}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {communityImages.map((imageUrl, index) => (
@@ -576,21 +927,21 @@ export default function ElVisionLanding() {
       <section className="relative py-32 px-6 md:px-12">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-8">
-            Pertanyaan Terakhir Untukmu
+            {currentT.ctaTitle}
           </h2>
           
           <div className="space-y-6 text-xl text-slate-300 mb-12">
             <p>
-              Apakah kamu masih mau membuang waktu dengan <span className="line-through text-slate-500">"berpikir"</span> pakai <span className="text-red-400 font-semibold">Alam Sadar</span>?
+              {currentT.ctaSub1}
             </p>
             <p>
-              Atau kamu siap mengaktifkan <span className="text-cyan-400 font-bold">sistem yang benar</span>—sistem yang didesain untuk mewujudkan mimpi dengan probabilitas <span className="text-emerald-400 font-bold">90%++</span>?
+              {currentT.ctaSub2}
             </p>
           </div>
 
           <div className="inline-block space-y-4 mb-12">
-            <p className="text-2xl font-bold text-slate-100">Pilihan ada di tanganmu.</p>
-            <p className="text-lg text-slate-400">Tapi Hukum Alam tidak menunggu.</p>
+            <p className="text-2xl font-bold text-slate-100">{currentT.ctaFinal}</p>
+            <p className="text-lg text-slate-400">{currentT.ctaWait}</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -598,7 +949,7 @@ export default function ElVisionLanding() {
               href="https://app.elvisiongroup.com"
               className="group relative px-10 py-5 bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 rounded-xl font-bold text-lg text-slate-950 transition-all duration-300 hover:shadow-[0_0_60px_rgba(6,182,212,0.6)] hover:scale-105 overflow-hidden inline-block"
             >
-              <span className="relative z-10">Aktifkan Sistem Sekarang</span>
+              <span className="relative z-10">{currentT.ctaButton}</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </a>
           </div>
@@ -615,21 +966,20 @@ export default function ElVisionLanding() {
                   DEEP FAITH
                 </span>
               </div>
-              <p className="text-slate-500 text-sm mb-1">by eL Vision</p>
-              <p className="text-slate-600 italic text-sm">eL Vision True Power</p>
+              <p className="text-slate-500 text-sm mb-1">{currentT.footerDesc}</p>
+              <p className="text-slate-600 italic text-sm">{currentT.footerTag}</p>
             </div>
 
             <div className="flex gap-8 text-sm text-slate-400">
-              <a href="#" className="hover:text-cyan-400 transition-colors">Tentang</a>
-              <a href="#" className="hover:text-cyan-400 transition-colors">Metode</a>
-              <a href="#" className="hover:text-cyan-400 transition-colors">Testimoni</a>
-              <a href="#" className="hover:text-cyan-400 transition-colors">Kontak</a>
+              {currentT.footerLinks.map((link, i) => (
+                <a key={i} href="#" className="hover:text-cyan-400 transition-colors">{link}</a>
+              ))}
             </div>
           </div>
 
           <div className="mt-12 pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
-            <p>© 2024 Deep Faith by eL Vision. Mind Technology for Human Excellence.</p>
-            <p className="mt-2 text-xs">Combining Quantum Physics, Psychology, and Spiritual Wisdom.</p>
+            <p>{currentT.footerCopyright}</p>
+            <p className="mt-2 text-xs">{currentT.footerSub}</p>
           </div>
         </div>
       </footer>
