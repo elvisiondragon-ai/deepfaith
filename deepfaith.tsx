@@ -275,7 +275,7 @@ export default function ElVisionLanding() {
       footerDesc: "by eL Vision",
       footerTag: "eL Vision True Power",
       footerLinks: ["Tentang", "Metode", "Testimoni", "Kontak"],
-      footerCopyright: "© 2024 Deep Faith by eL Vision. Mind Technology for Human Excellence.",
+      footerCopyright: "© 2026 Deep Faith by eL Vision. Mind Technology for Human Excellence.",
       footerSub: "Combining Quantum Physics, Psychology, and Spiritual Wisdom."
     },
     en: {
